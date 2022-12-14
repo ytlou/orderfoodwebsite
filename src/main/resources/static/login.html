@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Uena - Restaurant Admin Dashboard </title>
+
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
+    <!-- Daterange picker -->
+    <link href="./vendor/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Clockpicker -->
+    <link href="./vendor/clockpicker/css/bootstrap-clockpicker.min.css" rel="stylesheet">
+    <!-- asColorpicker -->
+    <link href="./vendor/jquery-asColorPicker/css/asColorPicker.min.css" rel="stylesheet">
+    <!-- Material color picker -->
+    <link href="./vendor/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
+    <!-- Pick date -->
+    <link rel="stylesheet" href="./vendor/pickadate/themes/default.css">
+    <link rel="stylesheet" href="./vendor/pickadate/themes/default.date.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Custom Stylesheet -->
+    <link href="./vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+
+    <link href="./vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+<div class="authincation d-flex flex-column flex-lg-row flex-column-fluid">
+<!--    <div class="login-aside text-center  d-flex flex-column flex-row-auto">-->
+<!--        <div class="d-flex flex-column-auto flex-column pt-lg-40 pt-15">-->
+<!--            <div class="text-center mb-4 pt-5">-->
+<!--                <img src="" alt="">-->
+<!--            </div>-->
+<!--            <h3 class="mb-2">Welcome back!</h3>-->
+<!--            <p>Login in</p>-->
+<!--        </div>-->
+<!--        <div class="aside-image" style="background-image:url(images/background/pic1.svg);"></div>-->
+<!--    </div>-->
+    <div class="container flex-row-fluid d-flex flex-column justify-content-center position-relative overflow-hidden p-7 mx-auto">
+        <div class="d-flex justify-content-center h-100 align-items-center">
+            <div class="authincation-content style-2">
+                <div class="row no-gutters">
+                    <div class="col-xl-12 tab-content">
+                        <div id="sign-up" class="auth-form tab-pane fade show active  form-validation">
+                            <form id="dz_login_signup_form" class="form-validate">
+                                <h3 class="text-center mb-4 text-black">Sign up your account</h3>
+                                <div class="form-group">
+                                    <label class="mb-1 text-black" for="val-email"><strong>Email</strong></label>
+                                    <div>
+                                        <input type="email" class="form-control" id="val-email" name="val-email"
+                                               placeholder="hello@example.com">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="mb-1 text-black" for="val-name"><strong>Name</strong></label>
+                                    <div>
+                                        <input type="text" class="form-control" id="val-name" name="val-name"
+                                               placeholder="Enter a username..">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="mb-1 text-black" for="val-dob"><strong>BirthDay</strong></label>
+                                    <div>
+                                        <input type="text" class="form-control" id="val-dob" name="val-address"
+                                               placeholder="Enter a date..">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="mb-1 text-black" for="val-address"><strong>Address</strong></label>
+                                    <div>
+                                        <input type="text" class="form-control" id="val-address" name="val-address"
+                                               placeholder="Enter an address..">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="mb-1 text-black" for="val-icon"><strong>Icon url</strong></label>
+                                    <div>
+                                        <input type="text" class="form-control" id="val-icon" name="val-icon"
+                                               placeholder="Enter an icon url..">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="mb-1 text-black" for="val-password"><strong>Password</strong></label>
+                                    <div>
+                                        <input type="password" class="form-control" id="val-password"
+                                               name="val-password" value="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-0">
+                                    <label class="radio-inline mr-3"><input type="radio" name="role" value="Customer" checked>Customer</label>
+                                    <label class="radio-inline mr-3"><input type="radio" name="role" value="Merchant">Merchant</label>
+                                </div>
+
+
+
+                                <div class="form-group text-center mt-4">
+                                    <button type="button" class="btn btn-primary btn-block" id="signUpButton">Sign
+                                        up
+                                    </button>
+                                </div>
+                            </form>
+                            <div class="new-account mt-3">
+                                <p>Already have an account? <a class="text-primary" href="#sign-in" data-toggle="tab" id="toSignIn">Sign
+                                    in</a></p>
+                            </div>
+                        </div>
+                        <div id="sign-in" class="auth-form tab-pane fade  form-validation">
+                            <form id="dz_login_signin_form" class="form-validate">
+                                <h3 class="text-center mb-4 text-black">Sign in your account</h3>
+                                <div class="form-group">
+                                    <label class="mb-1" for="val-email"><strong>Email</strong></label>
+                                    <div>
+										<input type="email" class="form-control" id="val-email2" name="val-email"
+											   placeholder="hello@example.com">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="mb-1"><strong>Password</strong></label>
+                                    <input id="val-password2" type="password" class="form-control" value="">
+                                </div>
+
+                                <div class="text-center form-group">
+                                    <button type="button" class="btn btn-primary btn-block" id="signInButton">Sign
+                                        In
+                                    </button>
+                                </div>
+                            </form>
+                            <div class="new-account mt-3">
+                                <p>Don't have an account? <a class="text-primary" href="#sign-up" data-toggle="tab">Sign
+                                    up</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--**********************************
+	Scripts
+***********************************-->
+
+
+<!-- Required vendors -->
+<script src="./vendor/global/global.min.js"></script>
+<script src="./vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="./js/custom.js"></script>
+<script src="./vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+<!-- Jquery Validation -->
+<script src="./vendor/jquery-validation/jquery.validate.min.js"></script>
+
+<script src="./js/deznav-init.js"></script>
+
+<!-- Daterangepicker -->
+<!-- momment js is must -->
+<script src="./vendor/moment/moment.min.js"></script>
+<script src="./vendor/bootstrap-daterangepicker/daterangepicker.js"></script>1
+<!-- clockpicker -->
+<script src="./vendor/clockpicker/js/bootstrap-clockpicker.min.js"></script>
+<!-- asColorPicker -->
+<script src="./vendor/jquery-asColor/jquery-asColor.min.js"></script>
+<script src="./vendor/jquery-asGradient/jquery-asGradient.min.js"></script>
+<script src="./vendor/jquery-asColorPicker/js/jquery-asColorPicker.min.js"></script>
+<!-- Material color picker -->
+<script src="./vendor/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+<!-- pickdate -->
+<script src="./vendor/pickadate/picker.js"></script>
+<script src="./vendor/pickadate/picker.time.js"></script>
+<script src="./vendor/pickadate/picker.date.js"></script>
+
+
+<!-- Daterangepicker -->
+<script src="./js/plugins-init/bs-daterange-picker-init.js"></script>
+<!-- Clockpicker init -->
+<script src="./js/plugins-init/clock-picker-init.js"></script>
+<!-- asColorPicker init -->
+<script src="./js/plugins-init/jquery-asColorPicker.init.js"></script>
+<!-- Material color picker init -->
+<script src="./js/plugins-init/material-date-picker-init.js"></script>
+<!-- Pickdate -->
+<script src="./js/plugins-init/pickadate-init.js"></script>
+
+
+<script src="./js/deznav-init.js"></script>
+<script src="./js/demo.js"></script>
+<script src="./js/styleSwitcher.js"></script>
+<script src="./js/Utils.js"></script>
+
+
+
+<script>
+    $('#signUpButton').click(function () {
+        $.post({
+            contentType : 'application/json',
+            url: Util.url('user/register'),
+            data : JSON.stringify({
+                "id": null,
+                "email": $('#val-email').val(),
+                "dob": Util.dateFormat($('#val-dob').val()),
+                "userName": $('#val-name').val(),
+                "password": $('#val-password').val(),
+                "icon": $('#val-icon').val(),
+                "address": $('#val-address').val(),
+                "paymentInfo": 500,
+                "role": $('input[name=role]:checked').val(),
+            }),
+            success: function (json) {
+                Util.message(json.msg, json.code);
+                if (json.code === 0) {
+                    $.post({
+                        url: Util.restfulUrl('user/login/', [$('#val-email').val(), $('#val-password').val()]),
+                        success: function (json) {
+                            Util.message('try login:' + json.msg, json.code);
+                            if (json.code === 0) {
+                                window.location.href = './index.html';
+                            }
+                        }
+                    })
+                }
+            }
+        })
+    });
+
+    $('#signInButton').click(function () {
+        $.post({
+            url: Util.restfulUrl('user/login/', [$('#val-email2').val(), $('#val-password2').val()]),
+            success: function (json) {
+                Util.message(json.msg, json.code);
+                if (json.code === 0) {
+                    window.location.href = './index.html';
+                }
+            }
+        })
+    });
+
+</script>
+</body>
+</html>

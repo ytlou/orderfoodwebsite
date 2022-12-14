@@ -1,0 +1,544 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>My Restaurant</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon.png">
+	<link href="../../vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+	<link href="../../vendor/lightgallery/css/lightgallery.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="profile-tab">
+                            <div class="custom-tab-1">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item"><a id="restaurant-profile-button" href="#tab-settings" data-toggle="tab" class="nav-link active show">Restaurant</a>
+                                    </li>
+                                    <li class="nav-item"><a id="menus-button" href="#tab-menus" data-toggle="tab" class="nav-link ">Menus</a>
+                                    </li>
+                                    <li class="nav-item"><a id="food-add-nav" href="#tab-addFood" data-toggle="tab" class="nav-link">Add Food</a>
+                                    </li>
+                                    <li class="nav-item"><a id="reviews-button" href="#tab-reviews" data-toggle="tab" class="nav-link">Reviews</a>
+                                    </li>
+
+
+                                </ul>
+                                <div class="tab-content">
+                                    <div id="tab-menus" class="tab-pane fade">
+                                        <div id="menus-line" class="menus-content pt-3">
+                                            <!--													<div class="profile-uoloaded-post border-bottom-1 pb-5">-->
+                                            <!--														<img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.yB6BAfNWrimtDWxEqNhuigHaIE?w=160&h=180&c=7&r=0&o=5&dpr=1.6&pid=1.7" alt="" class="img-fluid w-100">-->
+                                            <!--														<h3 id="review-title" class="text-black ">Apple</h3>-->
+                                            <!--														<div class="btn btn-primary"  data-toggle="modal"><span class="mr-2"><i>ID:</i></span>2</div>-->
+                                            <!--														<div class="btn btn-secondary"  data-toggle="modal"><span class="mr-2"><i>Calorie:</i></span>43</div>-->
+                                            <!--														<div class="btn btn-warning"  data-toggle="modal"><span class="mr-2"><i>Price:</i></span>39</div>-->
+                                            <!--														<div class="btn btn-danger"  data-toggle="modal"><span class="mr-2"><i>Type:</i></span>Fruit</div>-->
+                                            <!--														<p>Apple 100%</p>-->
+                                            <!--														<button class="btn btn-primary mr-2"><span class="mr-2"><i-->
+                                            <!--																class="fa fa-heart"></i></span>Update</button>-->
+                                            <!--														<button class="btn btn-secondary mr-2"  data-toggle="modal" data-target="#updateMenuFoodModal"><span class="mr-2"><i-->
+                                            <!--																class="fa fa-reply"></i></span>Remove</button>-->
+                                            <!--														<button class="btn btn-warning"  data-toggle="modal"><span class="mr-2"><i-->
+                                            <!--																class="fa fa-star"></i></span>Get off the shelf</button>-->
+                                            <!--													</div>-->
+                                        </div>
+                                    </div>
+                                    <div id="tab-addFood" class="tab-pane fade">
+                                        <form>
+                                            <div class="form-group col-md-12">
+                                                <label>NAME</label>
+                                                <input id="food-add-name" type="text" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label>PRICE</label>
+                                                <input id="food-add-price" type="text"  class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label>AVAILABILITY</label>
+                                                <input id="food-add-availability" type="button" class=" btn btn-secondary" value="true">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label>INGREDIENTS</label>
+                                                <textarea id="food-add-ingredients" type="text" class="form-control"></textarea>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label>PICTURE</label>
+                                                <input id="food-add-picture" type="text" class="form-control">
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label>CALORIE</label>
+                                                    <input id="food-add-calorie" type="text" class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label>TYPE</label>
+                                                    <input id="food-add-type" type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+
+                                            </div>
+                                            <button id="food-add-button" class="btn btn-primary" type="button">Add</button>
+                                        </form>
+                                    </div>
+                                    <div id="tab-reviews" class="tab-pane fade ">
+                                        <div class="menus-content pt-3">
+                                            <div class="col-xl-12 col-xxl-12 col-lg-12">
+                                                <div class="card border-0 pb-0">
+                                                    <div class="card-body">
+                                                        <div id="DZ_W_Todo3" class="widget-media dz-scroll ">
+                                                            <ul id="reviews-line" class="timeline">
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="tab-settings" class="tab-pane fade active show">
+                                        <form>
+                                            <div class="form-group col-md-12">
+                                                <label id="restaurant-label">ID</label>
+                                                <input disabled id="restaurant-update-id" type="text"  class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label>Name</label>
+                                                <input id="restaurant-update-name" type="text" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label>Location</label>
+                                                <input id="restaurant-update-localtion" type="text" class="form-control">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label>Description</label>
+                                                <textarea id="restaurant-update-description" type="text" class="form-control"></textarea>
+                                            </div>
+
+                                            <button id="restaurant-update-button" class="btn btn-primary" type="button">Update</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="updateMenuFoodModal">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Update Food</h5>
+                                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group col-md-12">
+                                                    <label>ID</label>
+                                                    <input id="food-update-id" disabled type="text" class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label>NAME</label>
+                                                    <input id="food-update-name" type="text" class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label>PRICE</label>
+                                                    <input id="food-update-price" type="text"  class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label>AVAILABILITY</label>
+                                                    <input id="food-update-availability" type="text" class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label>INGREDIENTS</label>
+                                                    <textarea id="food-update-ingredients" type="text" class="form-control"></textarea>
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label>PICTURE</label>
+                                                    <input id="food-update-picture" type="text" class="form-control">
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-6">
+                                                        <label>CALORIE</label>
+                                                        <input id="food-update-calorie" type="text" class="form-control">
+                                                    </div>
+                                                    <div class="form-group col-md-6">
+                                                        <label>TYPE</label>
+                                                        <input id="food-update-type" type="text" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                                            <button id="food-update-button" type="button" class="btn btn-primary">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../vendor/global/global.min.js"></script>
+    <script src="../../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="../../vendor/chart.js/Chart.bundle.min.js"></script>
+    <script src="../../js/custom.js"></script>
+    <script src="../../vendor/lightgallery/js/lightgallery-all.min.js"></script>
+    <script src="../../js/deznav-init.js"></script>
+    <script src="../../js/demo.js"></script>
+    <script src="../../js/styleSwitcher.js"></script>
+    <script src="../../js/Utils.js"></script>
+
+	<script>
+		let loginUser = Util.user();
+		if (loginUser == null || loginUser.role === "Customer") {
+			window.location.href = './shop.html';
+		} else if (loginUser.role === "Merchant") {
+			$('#icon-head').attr('src', loginUser.icon);
+			$('#loginUser-name').text(loginUser.userName);
+			$('#loginUser-role').text(loginUser.role);
+		} else {
+            Util.message("No authority", 2);
+			window.location.href = '../../index.html';
+		}
+
+		let curRestaurant = null;
+
+		$.post({
+			async: false,
+			contentType : 'application/json',
+			url: Util.url('restaurant/selectList'),
+			data : JSON.stringify({
+				"id": null,
+				"name": null,
+				"description": null,
+				"location": null,
+				"merchant": Number(loginUser.id)
+			}),
+			success: function (json) {
+				if (json.code === 0 && json.data.length > 0) {
+					curRestaurant = json.data[0];
+					console.log(curRestaurant)
+				}
+			}
+		})
+
+		let menusClick = function () {
+
+
+			$.post({
+				contentType : 'application/json',
+				url: Util.url('food/selectList'),
+				data : JSON.stringify({
+					"id": null,
+					"name": null,
+					"price": null,
+					"availability": null,
+					"ingredients": null,
+					"picture": null,
+					"calorie": null,
+					"type": null,
+					"restaurant": Number(curRestaurant.id)
+				}),
+				success: function (json) {
+					if (json.code === 0) {
+						let foods = json.data;
+						console.log(foods);
+						let html = '';
+
+						for (let i = 0; i < foods.length; i++) {
+							let food = foods[i];
+
+							html += '<div class="profile-uoloaded-post border-bottom-1 pb-5">\n' +
+							'<img src="'+ food.picture +'" alt="" class="img-fluid w-100">\n' +
+							'<h3 id="review-title" class="text-black ">' + food.name + '</h3>\n' +
+							'<div class="btn btn-primary"  data-toggle="modal"><span class="mr-2"><i>ID:</i></span>'+food.id+'</div>\n' +
+							'<div class="btn btn-secondary"  data-toggle="modal"><span class="mr-2"><i>Calorie:</i></span>'+food.calorie+'</div>\n' +
+							'<div class="btn btn-warning"  data-toggle="modal"><span class="mr-2"><i>Price:</i></span>'+food.price+'</div>\n' +
+							'<div class="btn btn-danger"  data-toggle="modal"><span class="mr-2"><i>Type:</i></span>'+food.type+'</div>\n' +
+							'<p>'+ food.ingredients +'</p>\n' +
+							'<button id="menu-food-update-button-' +
+									i
+									+ '" class="btn btn-primary mr-2" data-toggle="modal" data-target="#updateMenuFoodModal"><span class="mr-2"><i\n' +
+							'class="fa fa-heart"></i></span>Update</button>\n' +
+							'<button id="menu-food-remove-button-'+
+									i
+									+'" class="btn btn-secondary mr-2"  ><span class="mr-2"><i\n' +
+							'class="fa fa-reply"></i></span>Remove</button>\n';
+
+							html += '<button id="menu-food-availability-button-' + i + '" ';
+							if (food.availability) {
+								html += 'class="btn btn-warning"  data-toggle="modal"><span class="mr-2"><i\n' +
+										'class="fa fa-star"></i></span>Get off the shelf';
+							} else {
+								html += '<button class="btn btn-danger"  data-toggle="modal"><span class="mr-2"><i\n' +
+										'class="fa fa-star"></i></span>On the shelf';
+							}
+
+							html += '</button>\n' +
+									'</div>';
+						}
+
+						$('#menus-line').html(html);
+
+						for (let i = 0; i < foods.length; i++) {
+							let food = foods[i];
+							$('#menu-food-update-button-' + i).click(function () {
+								$('#food-update-id').val(food.id);
+								$('#food-update-name').val(food.name);
+								$('#food-update-price').val(food.price)
+								$('#food-update-availability').val(food.availability)
+								$('#food-update-ingredients').val(food.ingredients)
+								$('#food-update-picture').val(food.picture)
+								$('#food-update-calorie').val(food.calorie)
+								$('#food-update-type').val(food.type)
+							});
+
+							$('#menu-food-remove-button-' + i).click(function () {
+								$.ajax({
+									type: 'delete',
+									url: Util.url('food/delete/' + food.id),
+									success: function (json) {
+										if (json.code === 0) {
+											Util.message("Remove Success", 0);
+											window.location.reload();
+										} else {
+											Util.message("Remove Failure", 1);
+										}
+									}
+								})
+							});
+
+							$('#menu-food-availability-button-' + i).click(function () {
+								$.post({
+									contentType : 'application/json',
+									url: Util.url('food/update'),
+									data : JSON.stringify({
+										"id": Number(food.id),
+										"name": null,
+										"price": null,
+										"availability": !Boolean(food.availability),
+										"ingredients": null,
+										"picture": null,
+										"calorie": null,
+										"type": null,
+										"restaurant": null
+									}),
+									success: function (json) {
+										if (json.code === 0) {
+											Util.success("Update Success");
+											window.location.reload();
+										} else {
+											Util.warning("Update Failure");
+										}
+									}
+								});
+							});
+						}
+
+					}
+				},
+			});
+
+		}
+
+		let restaurantUpdateButtonClick = function () {
+			$('#restaurant-update-id').val(curRestaurant.id);
+			$('#restaurant-update-name').val(curRestaurant.name);
+			$('#restaurant-update-localtion').val(curRestaurant.location);
+			$('#restaurant-update-description').val(curRestaurant.description);
+		}
+
+
+
+		if (curRestaurant !== null) {
+
+			$('#restaurant-update-button').click(restaurantUpdateButtonClick)
+
+			restaurantUpdateButtonClick();
+
+			$('#menus-button').click(menusClick);
+
+			$('#food-add-button').click(function () {
+				$.post({
+					contentType : 'application/json',
+					url: Util.url('food/create'),
+					data : JSON.stringify({
+						"id": null,
+						"name": $('#food-add-name').val(),
+						"price": Number($('#food-add-price').val()),
+						"availability": Boolean($('#food-add-availability').val()),
+						"ingredients": $('#food-add-ingredients').val(),
+						"picture": $('#food-add-picture').val(),
+						"calorie": Number($('#food-add-calorie').val()),
+						"type": $('#food-add-type').val(),
+						"restaurant": Number(curRestaurant.id)
+					}),
+					success: function (json) {
+						Util.message(json.msg, json.code);
+						if (json.code === 0) {
+							console.log(json.data);
+						}
+					}
+				})
+			})
+
+
+
+			$('#reviews-button').click(function () {
+				$.post({
+					contentType : 'application/json',
+					url: Util.url('review/selectListVo'),
+					data : JSON.stringify({
+						"id": null,
+						"rating": null,
+						"comments": null,
+						"restaurant": Number(curRestaurant.id),
+						"time": null,
+						"user": null
+					}),
+					success: function (json) {
+						if (json.code === 0) {
+							console.log(json.data);
+
+							let reviews = json.data;
+							let html = '';
+							for (let i = 0; i < reviews.length; i++) {
+								let review = reviews[i];
+								html += "<li>" +
+										"<div class=\"timeline-panel\">" +
+										"<div class=\"media mr-2\">" +
+										"<img alt=\"image\" width=\"50\" src=\"" + review.userIcon +  "\">" +
+										"</div>" +
+										"<div class=\"media-body\">" +
+										"<h5 class=\"mb-1\"> " + review.userName +
+										" <small id=\"review-time\" class=\"text-muted\">"+ review.time +"</small></h5>" +
+										"<p id=\"review-comments\" class=\"mb-1\">" + review.comments + "</p>" +
+										"</div>" +
+										"<div class=\"dropdown\">";
+
+								let starsA = review.rating / 2;
+								let starsB = review.rating % 2;
+								for (let j = 0; j < starsA; j++) {
+									html += '⭐';
+								}
+								for (let j = 0; j < starsB; j++) {
+									html += '☆';
+								}
+
+								html += "</div>" +
+										"</div>" +
+										"</li>";
+
+
+							}
+
+							$('#reviews-line').html(html);
+						}
+					}
+				})
+			})
+
+			$('#restaurant-update-button').click(function () {
+				$.post({
+					contentType : 'application/json',
+					url: Util.url('restaurant/update'),
+					data : JSON.stringify({
+						"id": Number(curRestaurant.id),
+						"name": $('#restaurant-update-name').val(),
+						"description": $('#restaurant-update-description').val(),
+						"location": $('#restaurant-update-localtion').val(),
+						"merchant": null
+					}),
+					success: function (json) {
+						if (json.code === 0) {
+							Util.success("Update Success");
+							window.location.reload();
+						} else {
+							Util.warning("Update Failure");
+						}
+					}
+				});
+			})
+		} else {
+			$('#menus-button').hide();
+			$('#food-add-nav').hide();
+			$('#reviews-button').hide();
+
+			$('#restaurant-update-id').hide();
+			$('#restaurant-update-button').text('Create');
+
+			$('#restaurant-label').text('Please create your restaurant!');
+
+			$('#restaurant-update-button').click(function () {
+				$.post({
+					contentType : 'application/json',
+					url: Util.url('restaurant/create'),
+					data : JSON.stringify({
+						"id": null,
+						"name": $('#restaurant-update-name').val(),
+						"description": $('#restaurant-update-description').val(),
+						"location": $('#restaurant-update-localtion').val(),
+						"merchant": Number(loginUser.id)
+					}),
+					success: function (json) {
+						if (json.code === 0) {
+							Util.success("Create Success");
+							window.location.reload();
+						} else {
+							Util.warning("Create Failure");
+						}
+					}
+				});
+			})
+		}
+
+		$('#food-update-button').click(function () {
+			$.post({
+				contentType : 'application/json',
+				url: Util.url('food/update'),
+				data : JSON.stringify({
+					"id": Util.number($('#food-update-id').val()),
+					"name": $('#food-update-name').val(),
+					"price": Util.number($('#food-update-price').val()),
+					"availability": Util.bool($('#food-update-availability').val()),
+					"ingredients": $('#food-update-ingredients').val(),
+					"picture": $('#food-update-picture').val(),
+					"calorie": Util.number($('#food-update-calorie').val()),
+					"type": $('#food-update-type').val(),
+					"restaurant": null
+				}),
+				success: function (json) {
+					if (json.code === 0) {
+						Util.success("Update Success");
+						window.location.reload();
+					} else {
+						Util.warning("Update Failure");
+					}
+				}
+			});
+		});
+
+        $('#food-add-availability').click(function () {
+            let value = $('#food-add-availability').val();
+            $('#food-add-availability').val('' + !Util.bool(value));
+        });
+
+
+	</script>
+
+</body>
+</html>

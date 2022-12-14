@@ -1,0 +1,73 @@
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/order?serverTimezone=UTC&userUnicode=true&characterEncoding=utf-8
+
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+    type: com.alibaba.druid.pool.DruidDataSource
+
+
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+
+
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+  mvc:
+    servlet:
+      path: /
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  thymeleaf:
+    cache: false
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+
+
+
+
+mybatis-plus:
+  mybatis-plus:
+    config-location: classpath:mybatis/mybatis-config.xml
+
+  mapper-locations: classpath:mybatis/mapper/*Mapper.xml
+
+  type-aliases-package: order.pojo
+
+  global-config.db-config:
+    db-type: mysql
+    column-underline: true
+    logic-delete-value: true
+    logic-not-delete-value: false
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+
+server:
+  port: 9090
+  servlet:
+    session:
+      timeout: 1800
+
+swagger:
+  enable: true
+
+

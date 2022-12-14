@@ -1,0 +1,451 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Shop</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon.png">
+    <link href="../../vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="../../vendor/lightgallery/css/lightgallery.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-xl-12'>
+            <div class='card'>
+                <div class='card-body'>
+                    <div class='profile-tab'>
+                        <div class='custom-tab-1'>
+                            <ul class='nav nav-tabs'>
+                                <li class='nav-item'><a id='restaurants-tab-button' href='#tab-restaurants'
+                                                        data-toggle='tab' class='nav-link my-nav-link'>Restaurants</a>
+                                </li>
+                                <li class='nav-item'><a id='reviews-tab-button' href='#tab-reviews'
+                                                        data-toggle='tab'
+                                                        class='nav-link my-nav-link'>Reviews</a>
+                                </li>
+                                <li class='nav-item'><a id='menus-tab-button' href='#tab-menus'
+                                                        data-toggle='tab' class='nav-link my-nav-link'>Menus</a>
+                                </li>
+                            </ul>
+                            <div class='tab-content'>
+                                <div id='tab-restaurants' class='tab-pane fade active show'>
+                                    <div class='menus-content pt-3'>
+
+                                        <div class='card border-0 pb-0'>
+                                            <div class='card-body'>
+                                                <form class='post-input'>
+                                                    <label>
+                                                        <input id='search-address' type='text'
+                                                               class='btn btn-secondary light mr-1 px-3'
+                                                               placeholder='Address'>
+                                                        <input id='search-name' type='text'
+                                                               class='btn btn-secondary light mr-1 px-3'
+                                                               placeholder='Name'>
+                                                        <input id='search-description' type='text'
+                                                               class='btn btn-secondary light mr-1 px-3'
+                                                               placeholder='Description'>
+                                                    </label>
+                                                    <input type='button' id='restaurant-search-button'
+                                                           class='btn btn-primary light mr-1 px-3' value='Search'>
+                                                </form>
+                                                <div id="DZ_W_Todo1" class='widget-media dz-scroll height800'>
+                                                    <ul id='restaurant-list' class='timeline'>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id='tab-menus' class='tab-pane fade'>
+
+                                    <div class='card border-0 pb-0'>
+                                        <div class='card-body'>
+                                            <form class='post-input'>
+                                                <div class="form-row">
+                                                    <input disabled id='total-price' type='text'
+                                                           class='btn btn-secondary light mr-1'
+                                                           placeholder='Total price'>
+                                                    <input id='paid-button' type='button'
+                                                           class='btn btn-secondary light mr-1 px-3' value='Paid'>
+                                                </div>
+<!--                                                <div class="form-row">-->
+<!--                                                    <label for='comments-writer' class="col-md-10">Comments</label>-->
+<!--                                                    <label for='rating-text' class="col-md-2">Rating(1~10)</label>-->
+<!--                                                    <textarea id='comments-writer' class="btn btn-primary light col-md-10"   placeholder='Comments'></textarea>-->
+<!--                                                    <input id='rating-text' type='text'-->
+<!--                                                           class='btn btn-warning light col-md-2  ' value='10' placeholder='rating(1~10)'>-->
+<!--                                                </div>-->
+                                            </form>
+                                            <div id="DZ_W_Todo2" class='widget-media dz-scroll height800'>
+                                                <ul id='menus-list' class='timeline'>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id='tab-reviews' class='tab-pane fade '>
+                                    <div class='menus-content pt-3'>
+                                        <div class='col-xl-12 col-xxl-12 col-lg-12'>
+                                            <div class='card border-0 pb-0'>
+                                                <div class='card-body'>
+                                                    <div id='DZ_W_Todo3' class='widget-media dz-scroll height800'>
+                                                        <ul id='reviews-list' class='timeline'>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../vendor/global/global.min.js"></script>
+<script src="../../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="../../vendor/chart.js/Chart.bundle.min.js"></script>
+<script src="../../js/custom.js"></script>
+<script src="../../vendor/lightgallery/js/lightgallery-all.min.js"></script>
+<script src="../../js/deznav-init.js"></script>
+<script src="../../js/demo.js"></script>
+<script src="../../js/styleSwitcher.js"></script>
+<script src="../../js/Utils.js"></script>
+
+
+<script>
+    let loginUser = Util.user();
+
+    let selectedRestaurant = null;
+
+
+
+    let flushReviews = function () {
+        console.log(selectedRestaurant)
+        if (selectedRestaurant !== null) {
+            $.post({
+                contentType: 'application/json',
+                url: Util.url('review/selectListVo'),
+                data: JSON.stringify({
+                    "id": null,
+                    "rating": null,
+                    "comments": null,
+                    "restaurant": selectedRestaurant.id,
+                    "time": null,
+                    "user": null
+                }),
+                success: function (json) {
+                    if (json.code === 0) {
+                        console.log(json.data);
+
+                        let reviews = json.data;
+                        let html = '';
+                        for (let i = 0; i < reviews.length; i++) {
+                            let review = reviews[i];
+                            html += "<li>" +
+                                "<div class=\"timeline-panel\">" +
+                                "<div class=\"media mr-2\">" +
+                                "<img alt=\"image\" width=\"50\" src=\"" + review.userIcon + "\">" +
+                                "</div>" +
+                                "<div class=\"media-body\">" +
+                                "<h5 class=\"mb-1\"> " + review.userName +
+                                " <small id=\"review-time\" class=\"text-muted\">" + review.time + "</small></h5>" +
+                                "<p id=\"review-comments\" class=\"mb-1\">" + review.comments + "</p>" +
+                                "</div>" +
+                                "<div class=\"dropdown\">";
+
+                            let starsA = Math.floor(review.rating / 2);
+                            let starsB = review.rating % 2;
+                            for (let j = 0; j < starsA; j++) {
+                                html += '⭐';
+                            }
+                            for (let j = 0; j < starsB; j++) {
+                                html += '☆';
+                            }
+
+                            html += "</div>" +
+                                "</div>" +
+                                "</li>";
+
+
+                        }
+
+                        $('#reviews-list').html(html);
+                    }
+                }
+            })
+        }
+    }
+    $('#reviews-tab-button').click(flushReviews)
+
+    let orderFoods = new Map();
+    $('#paid-button').click(function () {
+        console.log(orderFoods)
+        console.log(orderFoods.size)
+        if (selectedRestaurant == null) {
+            Util.warning("selectedRestaurant == null")
+        } else if (orderFoods.size <= 0) {
+            Util.warning("orderFoods.size <= 0")
+        } else if (loginUser == null) {
+            Util.warning("loginUser == null")
+        }
+        if (selectedRestaurant !== null && orderFoods.size > 0 && loginUser !== null){
+            orderFoods.forEach(function (value, key, map) {
+                $.post({
+                    contentType: 'application/json',
+                    url: Util.url('order/createDetail'),
+                    data: JSON.stringify({
+                        "orderedFoods": [
+                            {
+                                "id": null,
+                                "quantity": Number(value),
+                                "food": Number(key),
+                                "order": null
+                            }
+                        ],
+                        "id": null,
+                        "time": null,
+                        "totalPrice": null,
+                        "status": null,
+                        "restaurant": Number(selectedRestaurant.id),
+                        "user": Number(loginUser.id)
+                    }),
+                    success: function (json) {
+                        if (json.code === 0) {
+                            $.post({
+                                url:Util.url('order/paid/' + json.data.id),
+                                success: function (js) {
+                                    if (js.code === 0) {
+                                        Util.success("Create order success, paid success");
+                                        // if (Util.emptyToNull($('#comments-writer').val()) == null || Util.emptyToNull($('#rating-text').val()) == null) {
+                                        //     Util.success("Create order success, paid success, not to review");
+                                        // } else {
+                                        //     $.post({
+                                        //         contentType: 'application/json',
+                                        //         url: Util.url('order/createDetail'),
+                                        //         data: JSON.stringify({
+                                        //             "id": null,
+                                        //             "rating": Number($('#rating-text').val()),
+                                        //             "comments": $('#comments-writer').val(),
+                                        //             "restaurant": Number(selectedRestaurant.id),
+                                        //             "time": null,
+                                        //             "user": Number(loginUser.id)
+                                        //         }),
+                                        //         success: function (reviewJs) {
+                                        //             if (reviewJs.code === 0) {
+                                        //                 Util.success("Create order success, paid success, review success")
+                                        //             } else {
+                                        //                 Util.warning("Create order success, paid success, review failure")
+                                        //             }
+                                        //         }
+                                        //     })
+                                        // }
+                                    } else {
+                                        Util.warning("Create order success, paid failure");
+                                    }
+                                }
+                            })
+                        } else {
+                            Util.error("Create order failure")
+                        }
+                    }
+                })
+            })
+        }
+    })
+
+    let flushMenus = function () {
+        if (selectedRestaurant !== null) {
+            $.post({
+                contentType: 'application/json',
+                url: Util.url('food/selectList'),
+                data: JSON.stringify({
+                    "id": null,
+                    "name": null,
+                    "price": null,
+                    "availability": null,
+                    "ingredients": null,
+                    "picture": null,
+                    "calorie": null,
+                    "type": null,
+                    "restaurant": Number(selectedRestaurant.id)
+                }),
+                success: function (json) {
+                    if (json.code === 0) {
+                        let foods = json.data;
+                        console.log(foods);
+                        let html = '';
+
+                        for (let i = 0; i < foods.length; i++) {
+                            let food = foods[i];
+
+                            html += "<div class=\"timeline-panel\">"
+
+                            html += '<div class="profile-uoloaded-post border-bottom-1 pb-5">\n' +
+                                '<img src="' + food.picture + '" alt="" class="img-fluid w-100">\n' +
+                                '<h3 id="review-title" class="text-black ">' + food.name + '</h3>\n' +
+                                '<div class="btn btn-primary"  data-toggle="modal"><span class="mr-2"><i>ID:</i></span>' + food.id + '</div>\n' +
+                                '<div class="btn btn-secondary"  data-toggle="modal"><span class="mr-2"><i>Calorie:</i></span>' + food.calorie + '</div>\n' +
+                                '<div class="btn btn-warning"  data-toggle="modal"><span class="mr-2"><i>Price:</i></span>' + food.price + '</div>\n' +
+                                '<div class="btn btn-danger"  data-toggle="modal"><span class="mr-2"><i>Type:</i></span>' + food.type + '</div>\n' +
+                                '<p>' + food.ingredients + '</p>\n';
+
+
+                            if (!food.availability) {
+                                html += '<div class="btn btn-danger menu-food-availability"><span class="mr-2"><i\n' +
+                                    'class="fa fa-star"></i></span>Not on the shelf</div>' +
+
+                                    '<button hidden class="btn btn-primary mr-2 menu-food-minus-button"><span class="mr-2"><i\n' +
+                                    'class="fa fa-heart"></i></span>Minus</button>\n' +
+                                    '<button hidden class="btn btn-secondary mr-2 menu-food-add-button"  ><span class="mr-2"><i\n' +
+                                    'class="fa fa-reply"></i></span>Add</button>\n' +
+                                    '<div hidden class="btn btn-danger menu-food-selected-number"><span class="mr-2"><i\n' +
+                                    'class="fa fa-star"></i></span>0</div>';
+                            } else {
+                                html += '<button class="btn btn-primary mr-2 menu-food-minus-button"><span class="mr-2"><i\n' +
+                                    'class="fa fa-heart"></i></span>Minus</button>\n' +
+                                    '<button class="btn btn-secondary mr-2 menu-food-add-button"  ><span class="mr-2"><i\n' +
+                                    'class="fa fa-reply"></i></span>Add</button>\n' +
+                                    '<div class="btn btn-danger menu-food-selected-number"><span class="mr-2"><i\n' +
+                                    'class="fa fa-star"></i></span>0</div>';
+                            }
+
+                            html += '</div></div>';
+                        }
+
+                        $('#menus-list').html(html);
+
+                        let totalPriceDiv = $('#total-price');
+                        totalPriceDiv.val(0)
+                        totalPriceDiv.click()
+
+                        orderFoods.clear();
+
+                        for (let i = 0; i < foods.length; i++) {
+                            let food = foods[i];
+                            Util.jqEq('.menu-food-add-button', i).click(function () {
+                                let label = Util.jqEq('.menu-food-selected-number', i);
+                                let number = Number(label.text()) + 1;
+                                label.text(number);
+                                orderFoods.set(food.id, number);
+                                totalPriceDiv.val(Number(totalPriceDiv.val()) + food.price);
+
+                                console.log(orderFoods)
+                            });
+
+                            Util.jqEq('.menu-food-minus-button', i).click(function () {
+                                let label = Util.jqEq('.menu-food-selected-number', i);
+                                let number = Number(label.text());
+                                if (number > 0) {
+                                    number -= 1;
+                                    label.text(number);
+                                    orderFoods.set(food.id, number);
+                                    totalPriceDiv.val(Number(totalPriceDiv.val()) - food.price);
+
+                                    console.log(orderFoods)
+                                }
+
+                            });
+
+
+                        }
+
+                    }
+                },
+            });
+        }
+    }
+    $('#menus-tab-button').click(flushMenus)
+
+
+    let flushRestaurants = function () {
+        $.post({
+            contentType: 'application/json',
+            url: Util.url('restaurant/selectList'),
+            data: JSON.stringify({
+                "id": null,
+                "name": Util.emptyToNull($('#search-name').val()),
+                "description": Util.emptyToNull($('#search-description').val()),
+                "location": Util.emptyToNull($('#search-address').val()),
+                "merchant": null
+            }),
+            success: function (json) {
+                if (json.code === 0) {
+                    let restaurants = json.data;
+                    console.log(restaurants);
+                    let html = '';
+
+                    for (let i = 0; i < restaurants.length; i++) {
+                        let restaurant = restaurants[i];
+
+                        html += '<li>\n' +
+                            '<div class="timeline-panel">\n' +
+                            '<div class="media-body">\n' +
+                            '<h5 class="mb-1">' + restaurant.name + '<small class="text-muted">[' + restaurant.location + ']</small></h5>\n' +
+                            '<p class="mb-1">' + restaurant.description + '</p>\n' +
+                            '</div>\n' +
+                            '<button id="restaurant-button-' + i + '" class="btn btn-primary"><i class="fa fa-link m-0"></i> </button>\n' +
+                            '</div>\n' +
+                            '</li>'
+                    }
+
+                    $('#restaurant-list').html(html);
+
+                    for (let i = 0; i < restaurants.length; i++) {
+                        let restaurant = restaurants[i];
+                        $('#restaurant-button-' + i).click(function () {
+                            let curRestaurant = null;
+
+                            $.post({
+                                async: false,
+                                contentType: 'application/json',
+                                url: Util.url('restaurant/selectList'),
+                                data: JSON.stringify({
+                                    "id": restaurant.id,
+                                    "name": null,
+                                    "description": null,
+                                    "location": null,
+                                    "merchant": null
+                                }),
+                                success: function (json) {
+                                    if (json.code === 0 && json.data.length > 0) {
+                                        selectedRestaurant = json.data[0];
+                                        console.log(curRestaurant)
+                                        $('#reviews-tab-button').click();
+                                    }
+                                }
+                            })
+
+                        });
+
+                    }
+                }
+            },
+        });
+    }
+    $('#restaurant-search-button').click(flushRestaurants);
+    flushRestaurants();
+
+
+
+</script>
+</body>
+
+</html>

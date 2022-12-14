@@ -1,0 +1,527 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>OrderManagement</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon.png">
+    <link href="../../vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="../../vendor/lightgallery/css/lightgallery.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-xl-12'>
+            <div class='card'>
+                <div class='card-body'>
+                    <div class='profile-tab'>
+                        <div class='custom-tab-1'>
+                            <ul class='nav nav-tabs'>
+                                <li class='nav-item '><a id='orders-tab-button' href='#tab-orders'
+                                                        data-toggle='tab' class='nav-link my-nav-link active show'>Orders</a>
+                                </li>
+                                <li class='nav-item'><a id='order-detail-tab-button' href='#tab-order-detail'
+                                                        data-toggle='tab' class='nav-link my-nav-link'>Order Detail</a>
+                                </li>
+                            </ul>
+                            <div class='tab-content'>
+                                <div id='tab-orders' class='tab-pane fade active show'>
+                                    <div class='menus-content pt-3'>
+
+                                        <div class='card border-0 pb-0'>
+                                            <div class='card-body'>
+                                                <form class='post-input'>
+                                                    <label>
+                                                        <input id='orders-search-id' type='text'
+                                                               class='btn btn-secondary light'
+                                                               placeholder='ID' style="margin: 5px">
+                                                        <input id='orders-search-user' type='text'
+                                                               class='btn btn-secondary light'
+                                                               placeholder='UserID' style="margin: 5px">
+                                                        <input id='orders-search-restaurant' type='text'
+                                                               class='btn btn-secondary light'
+                                                               placeholder='RestaurantID' style="margin: 5px">
+                                                        <input id='orders-search-time' type='text'
+                                                               class='btn btn-secondary light'
+                                                               placeholder='Date [yyyy-MM-dd]' style="margin: 5px">
+                                                        <input id='orders-search-status' type='text'
+                                                               class='btn btn-secondary light'
+                                                               placeholder='Status' style="margin: 5px">
+                                                    </label>
+                                                    <input type='button' id='orders-search-button'
+                                                           class='btn btn-primary light' value='Search'  style="margin: 5px">
+                                                </form>
+                                                <div id="DZ_W_Todo1" class='widget-media dz-scroll height800'>
+                                                    <ul id='order-list' class='timeline'>
+                                                        <li>
+                                                            <div class="timeline-panel">
+                                                                <div class="media-body">
+                                                                    <div>
+                                                                        Status:<h5 style="color: #00A2FF" class="mb-1 component-status d-inline">Status</h5>
+                                                                        <small class="component-id d-inline">id</small>
+                                                                    </div>
+                                                                    <div>
+                                                                        totalPrice:
+                                                                        <font style="color: #aa4e01;" class="component-totalPrice d-inline">Total Price</font>
+                                                                    </div>
+                                                                    <small class="component-time d-block">Time</small>
+                                                                    <div style="color: #aa8484;" class="d-block">UserID:<small class="component-user">--</small></div>
+                                                                    <div style="color: #f082b5" class="d-block">RestaurantID:<small class="component-restaurant ">--</small></div>
+                                                                </div>
+                                                                <div class="dropdown">
+                                                                    <button type="button"
+                                                                            class="btn btn-primary light sharp component-updateButton">
+                                                                        <svg width="18px" height="18px"
+                                                                             viewBox="0 0 24 24" version="1.1">
+                                                                            <g stroke="none" stroke-width="1"
+                                                                               fill="none" fill-rule="evenodd">
+                                                                                <rect x="0" y="0" width="24"
+                                                                                      height="24"/>
+                                                                                <circle fill="#000000" cx="5" cy="12"
+                                                                                        r="2"/>
+                                                                                <circle fill="#000000" cx="12" cy="12"
+                                                                                        r="2"/>
+                                                                                <circle fill="#000000" cx="19" cy="12"
+                                                                                        r="2"/>
+                                                                            </g>
+                                                                        </svg>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="tab-order-detail" class="tab-pane fad">
+                                    <div class='card border-0 pb-0'>
+                                        <div class='card-body'>
+                                            <form class='post-input'>
+                                                <div class="form-row">
+                                                    <input disabled id='order-status' type='text'
+                                                           class='btn btn-secondary light mr-1'>
+                                                    <input disabled id='total-price' type='text'
+                                                           class='btn btn-secondary light mr-1'
+                                                           placeholder='Total price'>
+                                                    <input id='paid-button' type='button'
+                                                           class='btn btn-secondary light mr-1 px-3' value='Paid'>
+                                                </div>
+                                                <div class="form-row" id="comments-form">
+                                                    <label for='comments-writer' class="col-md-10">Comments</label>
+                                                    <label for='rating-text' class="col-md-2">Rating(1~10)</label>
+                                                    <textarea id='comments-writer' class="btn btn-primary light col-md-10"   placeholder='Comments'></textarea>
+                                                    <input id='rating-text' type='text'
+                                                           class='btn btn-warning light col-md-2  ' value='10' placeholder='rating(1~10)'>
+                                                    <input id="submitCommentButton" class="col-md-12 btn btn-success" type="button" value="Submit Comment"/>
+                                                </div>
+                                                <div class="form-row" style="margin-top: 30px;" id="status-update-form">
+                                                    <div class="btn btn-success light mr-1">Unpaid</div>
+                                                    <div class="btn btn-success light mr-1">Paid</div>
+                                                    <div class="btn btn-success light mr-1">Make</div>
+                                                    <div class="btn btn-success light mr-1">Wait</div>
+                                                    <div class="btn btn-success light mr-1">Done</div>
+                                                    <div class="btn btn-success light mr-1">Cancel</div>
+                                                </div>
+                                            </form>
+                                            <div id="DZ_W_Todo2" class='widget-media dz-scroll height800'>
+                                                <ul id='menus-list' class='timeline'>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../vendor/global/global.min.js"></script>
+<script src="../../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="../../vendor/chart.js/Chart.bundle.min.js"></script>
+<script src="../../js/custom.js"></script>
+<script src="../../vendor/lightgallery/js/lightgallery-all.min.js"></script>
+<script src="../../js/deznav-init.js"></script>
+<script src="../../js/demo.js"></script>
+<script src="../../js/styleSwitcher.js"></script>
+<script src="../../js/Utils.js"></script>
+
+<script>
+    let orderList = null;
+    let orderDetail = null;
+
+    let loginUser = Util.user();
+    let restaurant = null;
+    if (loginUser !== null) {
+        let r = loginUser.role;
+        if (r === 'Customer') {
+            $('#orders-search-user').hide();
+
+        } else if (r === 'Merchant') {
+            $('#orders-search-restaurant').hide();
+            $('#paid-button').hide();
+            $('#comments-form').hide();
+            $.post({
+                contentType: 'application/json',
+                url: Util.url('restaurant/selectList'),
+                async: false,
+                data:JSON.stringify({
+                    "id": null,
+                    "name": null,
+                    "description": null,
+                    "location": null,
+                    "merchant": Util.number(loginUser.id)
+                }),
+                success: function (json) {
+                    if (json.code === 0 && json.data.length > 0) {
+                        restaurant = json.data[0];
+                    } else {
+                        Util.warning("Merchant has no restaurant!");
+                        window.location.href = '../restaurant/my-restaurant.html';
+                    }
+                }
+            })
+        } else if (r === 'Administrator') {
+            $('#paid-button').hide();
+            $('#comments-form').hide();
+        } else {
+            Util.error("Visitor has no authority!");
+            window.location.href = '../../home.html';
+        }
+    }
+
+    let orderFoods = new Map();
+
+    orderList = new UiUtil({
+        rootID: 'order-list',
+        match: {
+            id: function (d, i, c) {
+                c.text('\tID[' + d.id + ']');
+            },
+            status: {
+                template: function (d, i, c) {
+                    let s = d.status;
+                    if (s === 'Paid') {
+                        c.css('color', 'green');
+                    } else if (s === 'Make') {
+                        c.css('color', 'yellow');
+                    } else if (s === 'Wait') {
+                        c.css('color', 'pink');
+                    } else if (s === 'Done') {
+                        c.css('color', 'blue');
+                    } else if (s === 'Cancel') {
+                        c.css('color', 'red');
+                    }
+                }
+            },
+            updateButton: {
+                click: function (data, item, component) {
+                    let R = null;
+                    let U = null;
+                    let F = null;
+                    $.get({
+                        async: false,
+                        url:Util.url("restaurant/select/" + data.restaurant),
+                        success: function (json) {
+                            if (json.code === 0) {
+                                R = json.data;
+                            } else {
+                                Util.error(json.msg);
+                            }
+                        }
+                    });
+                    $.get({
+                        async: false,
+                        url:Util.url("user/selectById/" + data.user),
+                        success: function (json) {
+                            if (json.code === 0) {
+                                U = json.data;
+                            } else {
+                                Util.error(json.msg);
+                            }
+                        }
+                    });
+                    $.get({
+                        async: false,
+                        url:Util.url("order/selectDetail/" + data.id),
+                        success: function (json) {
+                            if (json.code === 0) {
+                                F = json.data;
+                                console.log(F);
+                            } else {
+                                Util.error(json.msg);
+                            }
+                        }
+                    });
+                    if (U === null || R === null || F === null) {
+                        return;
+                    }
+
+                    $.post({
+                        contentType: 'application/json',
+                        url: Util.url('food/selectList'),
+                        data: JSON.stringify({
+                            "id": null,
+                            "name": null,
+                            "price": null,
+                            "availability": null,
+                            "ingredients": null,
+                            "picture": null,
+                            "calorie": null,
+                            "type": null,
+                            "restaurant": R.id
+                        }),
+                        success: function (json) {
+                            if (json.code === 0) {
+                                let foods = json.data;
+                                console.log(foods);
+                                let html = '';
+
+                                for (let i = 0; i < foods.length; i++) {
+                                    let food = foods[i];
+
+                                    html += "<div class=\"timeline-panel\">"
+
+                                    html += '<div class="profile-uoloaded-post border-bottom-1 pb-5">\n' +
+                                        '<img src="' + food.picture + '" alt="" class="img-fluid w-100">\n' +
+                                        '<h3 id="review-title" class="text-black ">' + food.name + '</h3>\n' +
+                                        '<div class="btn btn-primary"  data-toggle="modal"><span class="mr-2"><i>ID:</i></span>' + food.id + '</div>\n' +
+                                        '<div class="btn btn-secondary"  data-toggle="modal"><span class="mr-2"><i>Calorie:</i></span>' + food.calorie + '</div>\n' +
+                                        '<div class="btn btn-warning"  data-toggle="modal"><span class="mr-2"><i>Price:</i></span>' + food.price + '</div>\n' +
+                                        '<div class="btn btn-danger"  data-toggle="modal"><span class="mr-2"><i>Type:</i></span>' + food.type + '</div>\n' +
+                                        '<p>' + food.ingredients + '</p>\n';
+
+
+                                    if (!food.availability) {
+                                        html += '<div class="btn btn-danger menu-food-availability"><span class="mr-2"><i\n' +
+                                            'class="fa fa-star"></i></span>Not on the shelf</div>' +
+
+                                            '<button hidden class="btn btn-primary mr-2 menu-food-minus-button"><span class="mr-2"><i\n' +
+                                            'class="fa fa-heart"></i></span>Minus</button>\n' +
+                                            '<button hidden class="btn btn-secondary mr-2 menu-food-add-button"  ><span class="mr-2"><i\n' +
+                                            'class="fa fa-reply"></i></span>Add</button>\n' +
+                                            '<div hidden class="btn btn-danger menu-food-selected-number"><span class="mr-2"><i\n' +
+                                            'class="fa fa-star"></i></span>0</div>';
+                                    } else {
+                                        html += '<button class="btn btn-primary mr-2 menu-food-minus-button"><span class="mr-2"><i\n' +
+                                            'class="fa fa-heart"></i></span>Minus</button>\n' +
+                                            '<button class="btn btn-secondary mr-2 menu-food-add-button"  ><span class="mr-2"><i\n' +
+                                            'class="fa fa-reply"></i></span>Add</button>\n' +
+                                            '<div class="btn btn-danger menu-food-selected-number"><span class="mr-2"><i\n' +
+                                            'class="fa fa-star"></i></span>0</div>';
+                                    }
+
+                                    html += '</div></div>';
+                                }
+
+                                $('#menus-list').html(html);
+
+                                let totalPriceDiv = $('#total-price');
+
+                                orderFoods.clear();
+
+                                let totalPrice = 0;
+
+                                for (let i = 0; i < foods.length; i++) {
+                                    let food = foods[i];
+
+
+                                    for (let j = 0; j < F.orderedFoods.length; j++) {
+                                        let f = F.orderedFoods[j];
+                                        if (f.food === food.id) {
+                                            totalPrice += food.price * f.quantity;
+                                            orderFoods.set(food.id, f.quantity);
+                                            Util.jqEq('.menu-food-selected-number', i).text(f.quantity);
+                                            break;
+                                        }
+                                    }
+
+
+                                    Util.jqEq('.menu-food-add-button', i).click(function () {
+                                        let label = Util.jqEq('.menu-food-selected-number', i);
+                                        let number = Number(label.text()) + 1;
+                                        label.text(number);
+                                        orderFoods.set(food.id, number);
+                                        totalPriceDiv.val(Number(totalPriceDiv.val()) + food.price);
+
+                                        console.log(orderFoods)
+                                    });
+
+                                    Util.jqEq('.menu-food-minus-button', i).click(function () {
+                                        let label = Util.jqEq('.menu-food-selected-number', i);
+                                        let number = Number(label.text());
+                                        if (number > 0) {
+                                            number -= 1;
+                                            label.text(number);
+                                            orderFoods.set(food.id, number);
+                                            totalPriceDiv.val(Number(totalPriceDiv.val()) - food.price);
+
+                                            console.log(orderFoods)
+                                        }
+
+                                    });
+
+
+                                }
+
+                                totalPriceDiv.val(totalPrice);
+                            }
+                        },
+                    });
+
+
+                    if (F.status !== 'Unpaid') {
+                        $('#paid-button').hide();
+                    }
+
+                    $('#order-status').val(F.status);
+
+                    let r = loginUser.role;
+
+                    let statusUpdateForm = $('#status-update-form div');
+                    for (let i = 0; i < statusUpdateForm.length; i++) {
+                        let suf = statusUpdateForm.eq(i);
+                        if (suf.text() === 'Paid' && loginUser.role === 'Customer') {
+                            suf.click(function () {
+                                $.post({
+                                    url: Util.restfulUrl("order/paid/",[F.id]),
+                                    success: function (json) {
+                                        Util.message(json.msg, json.code);
+                                        if (json.code === 0) {
+                                            $('#order-status').val(suf.text());
+                                        }
+                                    }
+                                });
+                            })
+                            continue;
+                        }
+                        suf.click(function () {
+                            $.post({
+                                url: Util.restfulUrl("order/updateStatus/",[F.id, suf.text()]),
+                                success: function (json) {
+                                    Util.message(json.msg, json.code);
+                                    if (json.code === 0) {
+                                        $('#order-status').val(suf.text());
+                                    }
+                                }
+                            });
+                        })
+                    }
+
+                    let submitCommentButton = $("#submitCommentButton");
+                    if (r === 'Customer' && F.status === 'Done') {
+                        submitCommentButton.click(function () {
+                            let rating = Util.number($("#rating-text").val());
+                            if (rating <= 0 || rating > 10) {
+                                Util.warning('rating input error');
+                                return;
+                            }
+                            $.post({
+                                contentType: 'application/json',
+                                url: Util.url('review/create'),
+                                data: JSON.stringify({
+                                    "id": null,
+                                    "rating": rating,
+                                    "comments": Util.emptyToNull($("#comments-writer").val()),
+                                    "restaurant": R.id,
+                                    "time": null,
+                                    "user": U.id
+                                }),
+                                success: function (json) {
+                                    Util.message(json.msg, json.code);
+                                }
+                            })
+                        })
+                    } else {
+                        submitCommentButton.hide();
+                    }
+
+                    $('#status-update-form div').hide();
+                    if (r === 'Customer') {
+                        if (F.status === 'Unpaid') {
+                            $('#status-update-form div:eq(5)').show();
+                        } else if (F.status === 'Paid' || F.status === 'Make' || F.status === 'Wait') {
+                            $('#status-update-form div:eq(4)').show();
+                        }
+                    } else if (r === 'Merchant') {
+                        if (F.status === 'Paid') {
+                            $('#status-update-form div:eq(5)').show();
+                        }  else if (F.status !== 'Unpaid' && F.status !== 'Cancel') {
+                            $('#status-update-form div:eq(2)').show();
+                            $('#status-update-form div:eq(3)').show();
+                            $('#status-update-form div:eq(4)').show();
+                        }
+                    } else if (r === 'Administrator') {
+                        $('#status-update-form div').show();
+                    } else {
+                        Util.error("Visitor has no authority!");
+                        window.location.href = '../../home.html';
+                    }
+
+
+
+
+
+                    $('#order-detail-tab-button').click();
+                }
+            }
+        },
+        loadFun: function (root) {
+            $.post({
+                contentType: 'application/json',
+                url: Util.url('order/selectList'),
+                data: JSON.stringify({
+                    "id": Util.number($('#orders-search-id').val()),
+                    "time": Util.datetimeFormat($('#orders-search-time').val()),
+                    "totalPrice": null,
+                    "status": Util.emptyToNull($('#orders-search-status').val()),
+                    "restaurant": restaurant === null ? Util.number($('#orders-search-restaurant').val()) : restaurant.id,
+                    "user": loginUser.role === 'Customer' ? loginUser.id : Util.number($('#orders-search-user').val())
+                }),
+                success: function (json) {
+                    if (json.code === 0) {
+                        console.log(json.data);
+                        root.updateUI(json.data);
+                    }
+                }
+            })
+        },
+    });
+
+
+    $('#orders-search-button').click(function () {
+        orderList.load();
+    });
+
+
+
+
+
+
+
+</script>
+</body>
+
+</html>

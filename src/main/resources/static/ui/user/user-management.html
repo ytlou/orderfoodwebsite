@@ -1,0 +1,452 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>UserManagement</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../../images/favicon.png">
+    <link href="../../vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="../../vendor/lightgallery/css/lightgallery.min.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-xl-12'>
+            <div class='card'>
+                <div class='card-body'>
+                    <div class='profile-tab'>
+                        <div class='custom-tab-1'>
+                            <ul class='nav nav-tabs'>
+                                <li class='nav-item '><a id='users-tab-button' href='#tab-users'
+                                                        data-toggle='tab' class='nav-link my-nav-link active show'>Users</a>
+                                </li>
+                                <li class='nav-item'><a id='user-add-tab-button' href='#tab-user-add'
+                                                        data-toggle='tab' class='nav-link my-nav-link'>Add User</a>
+                                </li>
+                            </ul>
+                            <div class='tab-content'>
+                                <div id='tab-users' class='tab-pane fade active show'>
+                                    <div class='menus-content pt-3'>
+
+                                        <div class='card border-0 pb-0'>
+                                            <div class='card-body'>
+                                                <form class='post-input'>
+                                                    <label>
+                                                        <input id='users-search-id' type='text'
+                                                               class='btn btn-secondary light'
+                                                               placeholder='ID' style="margin: 5px">
+                                                        <input id='users-search-role' type='text'
+                                                               class='btn btn-secondary light'
+                                                               placeholder='Role' style="margin: 5px">
+                                                        <input id='users-search-userName' type='text'
+                                                               class='btn btn-secondary light'
+                                                               placeholder='Name' style="margin: 5px">
+                                                        <input id='users-search-email' type='text'
+                                                               class='btn btn-secondary light'
+                                                               placeholder='Email' style="margin: 5px">
+                                                        <input id='users-search-address' type='text'
+                                                               class='btn btn-secondary light'
+                                                               placeholder='Address' style="margin: 5px">
+                                                        <input id='users-search-dob' type='text'
+                                                               class='btn btn-secondary light'
+                                                               placeholder='Day of Birth' style="margin: 5px">
+                                                    </label>
+                                                    <input type='button' id='users-search-button'
+                                                           class='btn btn-primary light' value='Search'  style="margin: 5px">
+                                                </form>
+                                                <div id="DZ_W_Todo1" class='widget-media dz-scroll height800'>
+                                                    <ul id='user-list' class='timeline'>
+                                                        <li>
+                                                            <div class="timeline-panel">
+                                                                <div class="media mr-2" style="width: 80px; height: 80px;">
+                                                                    <img alt="image" style="width: 80px; height: 80px;"
+                                                                         src="../../images/avatar/1.jpg"
+                                                                         class="component-icon">
+                                                                </div>
+                                                                <div class="media-body">
+                                                                    <div>
+                                                                        <h5 class="mb-1 component-userName d-inline">Dr sultads Send you Photo</h5>
+                                                                        <small class="component-id d-inline">id</small>
+                                                                        <small style="color: #1ab6cf" class="component-role d-inline">role</small>
+                                                                    </div>
+                                                                    <div>
+                                                                        <font style="color: #aa4e01;" class="component-email d-inline"> email</font>
+                                                                        <small style="color: #1ab6cf" class="component-dob d-inline">29 July 2020 -
+                                                                            02:26 PM</small><small style="color: #f082b5" class="component-paymentInfo d-inline">29 July 2020
+                                                                        02:26 PM</small>
+                                                                    </div>
+                                                                    <small class="component-address d-block">Address</small>
+                                                                </div>
+                                                                <div class="dropdown">
+                                                                    <button type="button"
+                                                                            class="btn btn-primary light sharp component-updateButton"
+                                                                            data-toggle="modal" data-target="#updateUserModal">
+                                                                        <svg width="18px" height="18px"
+                                                                             viewBox="0 0 24 24" version="1.1">
+                                                                            <g stroke="none" stroke-width="1"
+                                                                               fill="none" fill-rule="evenodd">
+                                                                                <rect x="0" y="0" width="24"
+                                                                                      height="24"/>
+                                                                                <circle fill="#000000" cx="5" cy="12"
+                                                                                        r="2"/>
+                                                                                <circle fill="#000000" cx="12" cy="12"
+                                                                                        r="2"/>
+                                                                                <circle fill="#000000" cx="19" cy="12"
+                                                                                        r="2"/>
+                                                                            </g>
+                                                                        </svg>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <form id="tab-user-add" class="tab-pane fad">
+                                    <h3 class="text-center mb-4 text-black">Add a user</h3>
+                                    <div class="form-group">
+                                        <label class="mb-1 text-black" for="val-email"><strong>Email</strong></label>
+                                        <div>
+                                            <input type="email" class="form-control" id="val-email" name="val-email"
+                                                   placeholder="hello@example.com">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="mb-1 text-black" for="val-name"><strong>Name</strong></label>
+                                        <div>
+                                            <input type="text" class="form-control" id="val-name" name="val-name"
+                                                   placeholder="Enter a username..">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="mb-1 text-black" for="val-dob"><strong>BirthDay</strong></label>
+                                        <div>
+                                            <input type="text" class="form-control" id="val-dob" name="val-address"
+                                                   placeholder="Enter a date..">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="mb-1 text-black" for="val-address"><strong>Address</strong></label>
+                                        <div>
+                                            <input type="text" class="form-control" id="val-address" name="val-address"
+                                                   placeholder="Enter an address..">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="mb-1 text-black" for="val-icon"><strong>Icon url</strong></label>
+                                        <div>
+                                            <input type="text" class="form-control" id="val-icon" name="val-icon"
+                                                   placeholder="Enter an icon url..">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="mb-1 text-black" for="val-paymentInfo"><strong>Money</strong></label>
+                                        <div>
+                                            <input type="text" class="form-control" id="val-paymentInfo" name="val-paymentInfo"
+                                                   placeholder="Money..">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="mb-1 text-black" for="val-password"><strong>Password</strong></label>
+                                        <div>
+                                            <input type="password" class="form-control" id="val-password"
+                                                   name="val-password" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-0">
+                                        <label class="radio-inline mr-3"><input type="radio" name="role" value="Customer" checked>Customer</label>
+                                        <label class="radio-inline mr-3"><input type="radio" name="role" value="Merchant">Merchant</label>
+                                        <label class="radio-inline mr-3"><input type="radio" name="role" value="Administrator">Administrator</label>
+                                    </div>
+
+
+
+                                    <div class="form-group text-center mt-4">
+                                        <button type="button" class="btn btn-primary btn-block" id="signUpButton">Add</button>
+                                    </div>
+                                </form>
+
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="updateUserModal">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Update Food</h5>
+                                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <h3 class="text-center mb-4 text-black">Update User</h3>
+                                                    <div class="form-group">
+                                                        <label class="mb-1 text-black"><strong>ID</strong></label>
+                                                        <div>
+                                                            <input disabled type="text" class="form-control component-id" name="val-email"
+                                                                   placeholder="ID">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="mb-1 text-black"><strong>Email</strong></label>
+                                                        <div>
+                                                            <input type="email" class="form-control component-email" name="val-email"
+                                                                   placeholder="..@..">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="mb-1 text-black"><strong>Name</strong></label>
+                                                        <div>
+                                                            <input type="text" class="form-control component-userName"  name="val-name"
+                                                                   placeholder="Enter a username..">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="mb-1 text-black"><strong>BirthDay</strong></label>
+                                                        <div>
+                                                            <input type="text" class="form-control component-dob" name="val-address"
+                                                                   placeholder="Enter a date..">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="mb-1 text-black"><strong>Address</strong></label>
+                                                        <div>
+                                                            <input type="text" class="form-control component-address" name="val-address"
+                                                                   placeholder="Enter an address..">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="mb-1 text-black"><strong>Icon url</strong></label>
+                                                        <div>
+                                                            <input type="text" class="form-control component-icon" name="val-icon"
+                                                                   placeholder="Enter an icon url..">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="mb-1 text-black" for="val-paymentInfo"><strong>Money</strong></label>
+                                                        <div>
+                                                            <input type="text" class="form-control component-paymentInfo"  name="val-paymentInfo"
+                                                                   placeholder="Money..">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group">
+                                                        <label class="mb-1 text-black"><strong>Password</strong></label>
+                                                        <div>
+                                                            <input type="password" class="form-control component-password"
+                                                                   name="val-password" value="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group mb-0 component-role">
+                                                        <label class="radio-inline mr-3"><input type="radio" name="role" value="Customer" checked>Customer</label>
+                                                        <label class="radio-inline mr-3"><input type="radio" name="role" value="Merchant">Merchant</label>
+                                                        <label class="radio-inline mr-3"><input type="radio" name="role" value="Administrator">Administrator</label>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary component-updateButton">Update</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../vendor/global/global.min.js"></script>
+<script src="../../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="../../vendor/chart.js/Chart.bundle.min.js"></script>
+<script src="../../js/custom.js"></script>
+<script src="../../vendor/lightgallery/js/lightgallery-all.min.js"></script>
+<script src="../../js/deznav-init.js"></script>
+<script src="../../js/demo.js"></script>
+<script src="../../js/styleSwitcher.js"></script>
+<script src="../../js/Utils.js"></script>
+
+<script>
+    let userList = null;
+    let updateUserModalUi = null;
+
+
+    updateUserModalUi = new UiUtil({
+        rootID: 'updateUserModal',
+        textType: 'val',
+        preLoad: false,
+        match: {
+            role: {
+                textType: 'radio'
+            },
+            updateButton:{
+                click: function (data, item) {
+                    let d = item.getDataFromUI();
+                    $.post({
+                        url: Util.url('user/update'),
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            "id": data.id,
+                            "email": d.email,
+                            "dob": Util.dateFormat(d.dob),
+                            "userName": d.userName,
+                            "password": d.password,
+                            "icon": d.icon,
+                            "address": d.address,
+                            "paymentInfo": Util.number(d.paymentInfo),
+                            "role": d.role
+                        }),
+                        success: function (json) {
+                            Util.message(json.msg, json.code);
+                            if (json.code === 0) {
+                                userList.children[data.DATA_POS].updateUI(d);
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    });
+
+    userList = new UiUtil({
+        rootID: 'user-list',
+        match: {
+            icon: {
+                textType: 'src'
+            },
+            id: function (d, i, c) {
+                c.text('[' + d.id + ']');
+            },
+            dob: function (d, i, c) {
+                c.text('[' + d.dob + ']');
+            },
+            paymentInfo: function (d,i, c) {
+                c.text( '($' + d.paymentInfo + ')');
+            },
+            role: function (d,i, c) {
+                if (d.role === 'Customer') {
+                    c.css('color', 'green');
+                } else if (d.role === 'Administrator') {
+                    c.css('color', 'red');
+                }
+                c.text( '(' + d.role + ')');
+            },
+            updateButton: {
+                click: function (data, item) {
+                    data.DATA_POS = item.pos;
+                    updateUserModalUi.updateUI(data);
+                }
+            }
+        },
+        loadFun: function (root) {
+            $.post({
+                contentType: 'application/json',
+                url: Util.url('user/selectList'),
+                data: JSON.stringify({
+                    "id": null,
+                    "email": null,
+                    "dob": null,
+                    "userName": null,
+                    "password": null,
+                    "icon": null,
+                    "address": null,
+                    "paymentInfo": null,
+                    "role": null
+                }),
+                success: function (json) {
+                    if (json.code === 0) {
+                        console.log(json.data);
+                        root.updateUI(json.data);
+                    }
+                }
+            })
+        },
+    });
+
+    $('#users-search-button').click(function () {
+        let data = {
+            "id": Util.number($('#users-search-id').val()),
+            "email": Util.emptyToNull($('#users-search-email').val()),
+            "dob": Util.dateFormat($('#users-search-dob').val()),
+            "userName": Util.emptyToNull($('#users-search-userName').val()),
+            "password": null,
+            "icon": null,
+            "address": Util.emptyToNull($('#users-search-address').val()),
+            "paymentInfo": null,
+            "role": Util.emptyToNull($('#users-search-role').val())
+        };
+        console.log(data);
+        $.post({
+            contentType: 'application/json',
+            url: Util.url('user/selectList'),
+            data: JSON.stringify(data),
+            success: function (json) {
+                if (json.code === 0) {
+                    console.log(json.data);
+                    userList.updateUI(json.data);
+                }
+            }
+        })
+    });
+
+    $('#signUpButton').click(function () {
+        $.post({
+            contentType : 'application/json',
+            url: Util.url('user/register'),
+            data : JSON.stringify({
+                "id": null,
+                "email": $('#val-email').val(),
+                "dob": Util.dateFormat($('#val-dob').val()),
+                "userName": $('#val-name').val(),
+                "password": $('#val-password').val(),
+                "icon": $('#val-icon').val(),
+                "address": $('#val-address').val(),
+                "paymentInfo": Number($('#val-paymentInfo').val()),
+                "role": $('input[name=role]:checked').val(),
+            }),
+            success: function (json) {
+                Util.message(json.msg, json.code);
+            }
+        })
+    });
+
+
+</script>
+</body>
+
+</html>

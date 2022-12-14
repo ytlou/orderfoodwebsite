@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="order.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="order.pojo.User">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="dob" jdbcType="DATE" property="dob"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="icon" jdbcType="VARCHAR" property="icon"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="payment_info" jdbcType="DOUBLE" property="paymentInfo"/>
+        <result column="role" jdbcType="VARCHAR" property="role"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id
+        , email, dob, user_name, `password`, icon, address, payment_info, `role`
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectAll" resultType="order.pojo.User">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+    </select>
+    <select id="selectByEmail" resultType="order.pojo.User">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where email = #{email,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from user
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="order.pojo.User" useGeneratedKeys="true">
+        insert into user (email, dob, user_name,
+                          `password`, icon, address,
+                          payment_info, `role`)
+        values (#{email,jdbcType=VARCHAR}, #{dob,jdbcType=DATE}, #{userName,jdbcType=VARCHAR},
+                #{password,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+                #{paymentInfo,jdbcType=DOUBLE}, #{role,jdbcType=VARCHAR})
+    </insert>
+    <select id="selectList" resultType="order.pojo.User">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        <where>
+            <if test="id != null">
+                and id = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="email != null">
+                and email like concat(concat('%',#{email,jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="dob != null">
+                and dob = #{dob,jdbcType=DATE}
+            </if>
+            <if test="userName != null">
+                and user_name like concat(concat('%',#{userName,jdbcType=VARCHAR}), '%')
+            </if>
+
+            <if test="icon != null">
+                and icon like concat(concat('%', #{icon,jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="address != null">
+                and address like concat(concat('%',#{address,jdbcType=VARCHAR}), '%')
+            </if>
+            <if test="paymentInfo != null">
+                and payment_info >= #{paymentInfo,jdbcType=DOUBLE}
+            </if>
+            <if test="role != null">
+                and role like concat(concat('%',#{role,jdbcType=VARCHAR}), '%')
+            </if>
+        </where>
+
+    </select>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="order.pojo.User" useGeneratedKeys="true">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="email != null">
+                email,
+            </if>
+            <if test="dob != null">
+                dob,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="password != null">
+                `password`,
+            </if>
+            <if test="icon != null">
+                icon,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="paymentInfo != null">
+                payment_info,
+            </if>
+            <if test="role != null">
+                `role`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="dob != null">
+                #{dob,jdbcType=DATE},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null">
+                #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentInfo != null">
+                #{paymentInfo,jdbcType=DOUBLE},
+            </if>
+            <if test="role != null">
+                #{role,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="order.pojo.User">
+        update user
+        <set>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="dob != null">
+                dob = #{dob,jdbcType=DATE},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                `password` = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="icon != null">
+                icon = #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentInfo != null">
+                payment_info = #{paymentInfo,jdbcType=DOUBLE},
+            </if>
+            <if test="role != null">
+                `role` = #{role,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="order.pojo.User">
+        update user
+        set email        = #{email,jdbcType=VARCHAR},
+            dob          = #{dob,jdbcType=DATE},
+            user_name    = #{userName,jdbcType=VARCHAR},
+            `password`   = #{password,jdbcType=VARCHAR},
+            icon         = #{icon,jdbcType=VARCHAR},
+            address      = #{address,jdbcType=VARCHAR},
+            payment_info = #{paymentInfo,jdbcType=DOUBLE},
+            `role`       = #{role,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
